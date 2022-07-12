@@ -27,7 +27,6 @@ $("#quiz_box_section").innerHTML = makeAnswerBox(
   "5"
 )
 
-
 const isAnimationing = target => target.getAnimations().length != 0;
 
 const startGaging = (target, duration) => new Promise((resolve, reject) => {
