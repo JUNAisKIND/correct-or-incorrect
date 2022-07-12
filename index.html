@@ -26,30 +26,45 @@
     </div>
 
     <section id="quiz_box_section">
-      <div class="quiz-box" id="quiz_box">
-        다음중 틀린 표기는?
-      </div>
-      <div class="answer-box answer-box-row" id="answer_box">
-        <ol class="answers">
-          <li class="answer" id="1">돼다</li>
-          <li class="answer">입니다</li>
-          <li class="answer">3</li>
-          <li class="answer">4</li>
-          <li class="answer">5</li>
-        </ol>
-      </div>
     </section>
 
-    <button id="start_button">CLICK TO START</button>
+    <div class="popup-start" id="popup_start">
+      <div class="text">
+        <div id="quiz">시작하기</div>
+          <div class="buttons">
+          <button class="next_button" id="start_button">CLICK TO GO!</button>
+        </div>
+      </div>
+    </div>
 
     <div class="popup" id="popup">
       <div class="text">
         <div id="quiz">성공하셨습니다</div>
-        <button id="next_button">다음단계</button>
+        <div class="buttons">
+          <button class="next_button" id="next_button">다음문제</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="popup_finish">
+      <div class="text">
+        <div id="quiz">타임 아웃!</div>
+        <div class="buttons">
+          <button class="next_button" id="init_button">처음으로</button>
+        </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup_result">
+      <div class="text">
+        <div id="quiz">게임 끝!</div>
+        <div class="buttons">
+          <button class="next_button" id="init_button">처음으로</button>
+        </div>
       </div>
     </div>
   </main>
 
-  <footer> 푸터 </footer>
+  <footer></footer>
 </body>
 </html>
