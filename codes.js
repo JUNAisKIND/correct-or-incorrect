@@ -1,12 +1,12 @@
 
 const $ = selecter => document.querySelector(selecter);
-function makeAnswerBox(quiz, index, ...options) {
+function makeAnswerBox(type, index, options) {
 
   return `
 <div class="quiz-box" id="quiz_box">
-  다음중 틀린 표기는?
+  다음중 옳은 표기는?
 </div>
-<div class="answer-box answer-box-row" id="answer_box">
+<div class="answer-box answer-box-${type === 0 ? "row" : "column"}" id="answer_box">
   <ol class="answers">
     ${
       options.map((value, idx) => 
@@ -17,15 +17,19 @@ function makeAnswerBox(quiz, index, ...options) {
   `
 }
 
-$("#quiz_box_section").innerHTML = makeAnswerBox(
-  "문제",
-  0,
-  "1",
-  "2",
-  "3",
-  "4",
-  "5"
-)
+function next() {
+
+
+  $("#quiz_box_section").innerHTML = makeAnswerBox(
+    "문제",
+    0,
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  )
+}
 
 const isAnimationing = target => target.getAnimations().length != 0;
 
