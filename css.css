@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* padding margin을 포함하여 사이즈 결정 */
+
+  word-break: keep-all;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+
+  user-select: none;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: 'Black Han Sans', sans-serif;
+}
+
+header div {
+  background: linear-gradient(to right, rgb(0, 191, 255), rgb(46, 255, 70));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
+
+  font-size: 3rem;
+
+  position: absolute;
+  margin-top: 7.5vmin;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 400px;
+
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+main .slider {
+  margin-bottom: 10vmin;
+
+  width: 80vw;
+
+  overflow: hidden;
+}
+
+main .slider .gage {
+  background: red;
+  width: 100%;
+  height: 10px;
+  transform: translateX(0);
+}
+
+main .quiz-box {
+  font-size: 2rem;
+  margin-bottom: 3vmin;
+}
+
+main .answer-box {
+  font-family: 'Jua', sans-serif;
+  list-style: none;
+
+}
+
+main .answer-box .answers .answer {
+  border: solid 3px gray;
+  border-radius: 3px;
+  height: 7.5vmin;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 3vmin;
+
+  cursor: pointer;
+}
+
+main .answer-box-row {
+  width: 80vw;
+}
+
+main .answer-box-row .answers {
+
+  display: flex;
+  justify-content: space-around;
+}
+
+main .answer-box-row .answers .answer {
+  width: 15vw;
+}
+
+main .answer-box-column {
+  width: 100vw;
+}
+
+main .answer-box-column .answers {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+main .answer-box-column .answers .answer {
+
+  width: 80vmin;
+  margin-bottom: 2vmin;
+
+}
+
+main .popup {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+
+  display: none;
+  
+}
+
+main .popup .text {
+  width: 50vmin;
+  height: 60vmin;
+
+  background-color: white;
+  border: solid 5px gray;
+  border-radius: 10px;
+
+  padding: 1rem;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  font-family: 'Jua', sans-serif;
+  font-size: 5vmin;
+}
+
+#next_button {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-50%);
+
+  width: 70%;
+  height: 15%;
+
+  padding: 1vmin;
+
+  background-color: rgb(255, 236, 182);
+  border: 5px solid rgb(255, 136, 0);
+  cursor: pointer;
+
+  font-family: 'Jua', sans-serif;
+  font-size: 3vmin;
+}
