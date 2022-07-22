@@ -87,8 +87,8 @@ function cooldown() {
 }
 
 const popup_result = $("#popup_result");
-function onGameEnd(score) {
-  popupMessage(popup_result, 300, `게임 끝! ${score}점`)
+function onGameEnd() {
+  popupMessage(popup_result, 300, `게임 끝!`)
 }
 
 document.querySelector("#next_button").addEventListener("click", () => {

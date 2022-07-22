@@ -44,7 +44,7 @@ function update(questions, beInit) {
   const nex = quizes.next();
 
   if(nex.done) {
-    onGameEnd(nex.value);
+    onGameEnd();
     return true;
   }
 
