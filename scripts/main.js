@@ -1,7 +1,7 @@
 
 const $ = selecter => document.querySelector(selecter);
 
-fetch('https://junaiskind.github.io/correct-or-incorrect/sources.json')
+fetch('https://jaknndiius.github.io/correct-or-incorrect/sources.json')
   .then(Response => Response.text())
   .then(text => onLoad(JSON.parse(text)));
 
