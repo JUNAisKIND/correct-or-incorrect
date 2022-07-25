@@ -9,28 +9,15 @@ let init_list;
 let current_game;
 
 function onLoad(questions) {
+
   init_list = questions;
 
-  const row = questions[0].questions.map(value => [0, value])
-  const column = questions[1].questions.map(value => [1, value])
-  const new_list = row.concat(column)
-
-  current_game = new Game(
-    $("#quiz_box_section"),
-    new_list,
-    new HTMLManager(
-      $("#gage"),
-      $("#popup_start"),
-      $("#popup"),
-      $("#popup_finish"),
-      $("#popup_result")
-    )
-  );
+  initGame();
 }
 
 function initGame() {
 
-  questions = init_list;
+  questions = [...init_list];
 
   const row = questions[0].questions.map(value => [0, value])
   const column = questions[1].questions.map(value => [1, value])
@@ -72,24 +59,24 @@ class Game {
     $("#next_button").addEventListener("click", () => {
       this.htmlManager.popdownResult().then(
         resolve => current_game.nextQuiz()
-      );
+      ).catch(()=>{});
     });
     
     $("#start_button").addEventListener("click", () => {
       this.htmlManager.popdownStart().then(
         resolve => this.nextQuiz()
-      );
+      ).catch(()=>{});
     })
     
     $("#init_button_timeout").addEventListener("click", () => {
       this.htmlManager.popdownTimeOut().then(
         resolve => initGame()
-      );
+      ).catch(()=>{});
     })
     $("#init_button_gameend").addEventListener("click", () => {
       this.htmlManager.popdownGameEnd().then(
         resolve => initGame()
-      );
+      ).catch(()=>{});
     })
 
     this.htmlManager.initWindows();

@@ -26,6 +26,8 @@ class HTMLManager {
     this.timeOutWindow.style.display = "none";
     this.gameEndWindow.style.display = "none";
 
+    this.stopGaging();
+
     this.popupStart();
 
   }
@@ -51,9 +53,8 @@ class HTMLManager {
 
   startGaging(duration) {
     return new Promise((resolve, reject) => {
-      if(this.isAnimationing(this.gage)) {
-        this.gage.getAnimations().forEach(anim => anim.cancel())
-      }
+      if(this.isAnimationing(this.gage))
+        this.gage.getAnimations().forEach(anim => anim.cancel());
 
       const animation = this.gage.animate(
         this.gage_keyframe,
@@ -61,9 +62,13 @@ class HTMLManager {
       );
 
       animation.onfinish = () => resolve("max gage");
-      animation.oncancel = () => reject("canceled gage")
+      animation.oncancel = () => reject("canceled gage");
 
     })
+  }
+
+  stopGaging() {
+    this.gage.getAnimations().forEach(anim => anim.cancel());
   }
 
   popupMessage(message_box, duration, direction, ...messages) {
