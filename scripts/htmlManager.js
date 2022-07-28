@@ -1,12 +1,14 @@
 class HTMLManager {
 
-  constructor(gage, startWindow, resultWindow, timeOutWindow, gameEndWindow) {
+  constructor(gage, startWindow, resultWindow, timeOutWindow, gameEndWindow, gage_duration, window_duration) {
 
     this.gage = gage;
     this.startWindow = startWindow;
     this.resultWindow = resultWindow;
     this.timeOutWindow = timeOutWindow;
     this.gameEndWindow = gameEndWindow;
+    this.gage_duration = gage_duration;
+    this.window_duration = window_duration;
 
     this.popup_keyframe = [
       { opacity: '0'},
@@ -67,13 +69,13 @@ class HTMLManager {
     return false;
   }
 
-  startGaging(duration) {
+  startGaging() {
     return new Promise((resolve, reject) => {
       this.stopGaging();
 
       const animation = this.gage.animate(
         this.gage_keyframe,
-        {duration: duration}
+        {duration: this.gage_duration}
       );
 
       animation.onfinish = () => resolve("max gage");
@@ -121,31 +123,31 @@ class HTMLManager {
   }
 
   popupResult(...messages) {
-    return this.appearMessage(this.resultWindow, 300, ...messages);
+    return this.appearMessage(this.resultWindow, this.window_duration, ...messages);
   }
 
   popupTimeOut() {
-    return this.appearMessage(this.timeOutWindow, 300);
+    return this.appearMessage(this.timeOutWindow, this.window_duration);
   }
 
   popupGameEnd(score) {
-    return this.appearMessage(this.gameEndWindow, 300, "게임 끝!","","", `점수는 ${score}점!`);
+    return this.appearMessage(this.gameEndWindow, this.window_duration, "게임 끝!","","", `점수는 ${score}점!`);
   }
 
   popdownStart() {
-    return this.disappearMessage(this.startWindow, 300);
+    return this.disappearMessage(this.startWindow, this.window_duration);
   }
 
   popdownResult() {
-    return this.disappearMessage(this.resultWindow, 300);
+    return this.disappearMessage(this.resultWindow, this.window_duration);
   }
 
   popdownTimeOut() {
-    return this.disappearMessage(this.timeOutWindow, 300);
+    return this.disappearMessage(this.timeOutWindow, this.window_duration);
   }
 
   popdownGameEnd() {
-    return this.disappearMessage(this.gameEndWindow, 300);
+    return this.disappearMessage(this.gameEndWindow, this.window_duration);
   }
 
   returnClickResult(button) {

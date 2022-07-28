@@ -31,7 +31,9 @@ function initGame() {
       $("#popup_start"),
       $("#popup"),
       $("#popup_finish"),
-      $("#popup_result")
+      $("#popup_result"),
+      10000,
+      300
     )
   )
 }
