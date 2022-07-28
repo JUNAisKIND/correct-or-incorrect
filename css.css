@@ -3,7 +3,7 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box; /* padding margin을 포함하여 사이즈 결정 */
+  box-sizing: border-box;
 
   word-break: keep-all;
   text-align: center;
@@ -50,8 +50,6 @@ main {
 
   font-family: 'Nanum Gothic Coding', monospace;
 }
-
-
 
 main .slider {
   margin-bottom: 10vmin;
@@ -142,39 +140,6 @@ main #quiz_box_section .counter {
   font-family: 'Jua', sans-serif;
 }
 
-main .popup-start {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(2px);
-}
-
-main .popup-start .text {
-  width: 50vmin;
-  height: 60vmin;
-
-  background-color: white;
-  border: solid 5px gray;
-  border-radius: 10px;
-
-  padding: 1rem;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-
-  font-family: 'Jua', sans-serif;
-  font-size: 5vmin;
-}
-
-
 main .popup {
   position: fixed;
   width: 100vw;
@@ -182,12 +147,11 @@ main .popup {
   backdrop-filter: blur(2px);
 
   display: none;
-
 }
 
 main .popup .text {
   width: 60vmin;
-  height: 80vmin;
+  height: 70vmin;
 
   background-color: white;
   border: solid 5px gray;
@@ -207,11 +171,27 @@ main .popup .text {
   position: relative;
 
   font-family: 'Jua', sans-serif;
-  font-size: 5vmin;
+  
 }
 
 #quiz {
   margin-top: 50px;
+}
+
+#quiz p:first-child {
+  font-size: 5vmin;
+}
+
+#quiz p:nth-child(3),
+#quiz p:nth-child(5) {
+  font-size: 4vmin;
+}
+
+#quiz p:nth-child(4) {
+  background: linear-gradient(to right, rgb(243, 71, 71), rgb(255, 217, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 5vmin;
 }
 
 .buttons {

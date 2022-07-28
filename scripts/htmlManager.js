@@ -13,6 +13,12 @@ class HTMLManager {
       { opacity: '1'}
     ];
 
+    // this.popup_keyframe_bounce = [
+    //   { transform: 'scale(0)' },
+    //   { transform: 'scale(1.1)', offset: 0.8},
+    //   { transform: 'scale(1)' }
+    // ];
+
     this.gage_keyframe = [
       { transform: 'translateX(-100%)'},
       { transform: 'translateX(0)'}
@@ -21,6 +27,8 @@ class HTMLManager {
   }
 
   initWindows() {
+
+    this.startWindow.style.display = "block";
 
     this.resultWindow.style.display = "none";
     this.timeOutWindow.style.display = "none";
@@ -51,10 +59,17 @@ class HTMLManager {
     return doc.getAnimations().length != 0;
   }
 
+  stopAnimation(doc, mode="cancel") {
+    if(this.isAnimationing(doc)) {
+      doc.getAnimations().forEach(anim => anim[mode]());
+      return true;
+    }
+    return false;
+  }
+
   startGaging(duration) {
     return new Promise((resolve, reject) => {
-      if(this.isAnimationing(this.gage))
-        this.gage.getAnimations().forEach(anim => anim.cancel());
+      this.stopGaging();
 
       const animation = this.gage.animate(
         this.gage_keyframe,
@@ -67,16 +82,14 @@ class HTMLManager {
     })
   }
 
-  stopGaging() {
-    this.gage.getAnimations().forEach(anim => anim.cancel());
+  stopGaging(mode="cancel") {
+    return this.stopAnimation(this.gage, mode);
   }
 
   popupMessage(message_box, duration, direction, ...messages) {
     return new Promise((resolve, reject) => {
 
-      if(this.isAnimationing(message_box)) {
-        message_box.getAnimations().forEach(anim => anim.cancel())
-      }
+      this.stopAnimation(message_box);
 
       if(messages.length !== 0)
         message_box.querySelector("#quiz").innerHTML = messages.map(value => `<p>${value}</p>`).join("");
@@ -116,7 +129,7 @@ class HTMLManager {
   }
 
   popupGameEnd(score) {
-    return this.appearMessage(this.gameEndWindow, 300, "게임 끝!", "", `점수는 ${score}점!`);
+    return this.appearMessage(this.gameEndWindow, 300, "게임 끝!","","", `점수는 ${score}점!`);
   }
 
   popdownStart() {
@@ -135,12 +148,9 @@ class HTMLManager {
     return this.disappearMessage(this.gameEndWindow, 300);
   }
 
-  onClickButton(button) {
-    if(this.isAnimationing(this.gage)) {
-      this.gage.getAnimations().forEach(anim => anim.cancel());
-
+  returnClickResult(button) {
+    if(this.stopGaging("pause"))
       return (button.id.startsWith("correct"));
-    }
     return null;
   }
 }

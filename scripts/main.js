@@ -36,20 +36,18 @@ function initGame() {
   )
 }
 
-
 class Game {
 
   constructor(quizBox, quiz_list, htmlManager) {
     this.score = 0;
 
+    this.quizBox = quizBox;
     this.quiz_count = 0;
     this.quiz_list = quiz_list;
     this.current_quiz;
     this.max_quiz_count = quiz_list.length;
     
     this.htmlManager = htmlManager;
-
-    this.quizBox = quizBox;
 
     this.init();
   }
@@ -58,7 +56,7 @@ class Game {
 
     $("#next_button").addEventListener("click", () => {
       this.htmlManager.popdownResult().then(
-        resolve => current_game.nextQuiz()
+        resolve => this.nextQuiz()
       ).catch(()=>{});
     });
     
@@ -117,11 +115,13 @@ class Game {
   }
 
   Incorrect() {
-    this.htmlManager.popupResult("오답입니다.", "정답은", this.current_quiz[1][0], "입니다.")
+    this.htmlManager.popupResult("오답입니다.","<br>", "정답은", this.current_quiz[1][0], "입니다.")
   }
 
   nextQuiz() {
     const question = this.next();
+
+    this.htmlManager.stopGaging();
 
     if(question === null) {
       this.htmlManager.popupGameEnd(this.score);
@@ -133,21 +133,18 @@ class Game {
     const shuffled_list = this.shuffle(question[1]);
     const right_index = shuffled_list.indexOf(right_answer);
 
-    const inner = this.htmlManager.makeAnswerBox(
+
+    this.quizBox.innerHTML = this.htmlManager.makeAnswerBox(
       question[0],
       right_index,
       shuffled_list,
       this.quiz_count,
       this.max_quiz_count
-    )
+    );
 
-    this.quizBox.innerHTML = inner;
-
-    const answers = this.quizBox.querySelectorAll(".answer");
-
-    answers.forEach(element => {
+    this.quizBox.querySelectorAll(".answer").forEach(element => {
       element.addEventListener("click", event => {
-        const click_result = this.htmlManager.onClickButton(event.target);
+        const click_result = this.htmlManager.returnClickResult(event.target);
         if(click_result !== null) {
           if(click_result) {
             this.Correct()
