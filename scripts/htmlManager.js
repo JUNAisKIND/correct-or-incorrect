@@ -42,6 +42,11 @@ class HTMLManager {
 
   }
 
+  changeSpeed(gage_duration, window_duration) {
+    this.gage_duration = gage_duration;
+    if(window_duration !== null) this.window_duration = window_duration;
+  }
+
   makeAnswerBox(type, correct_index, options, quiz_count, max_quiz_count) {
     return `
     <div class="quiz-box" id="quiz_box">다음중 옳은 표기는?</div>

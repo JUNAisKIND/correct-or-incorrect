@@ -32,7 +32,7 @@ function initGame() {
       $("#popup"),
       $("#popup_finish"),
       $("#popup_result"),
-      10000,
+      $("#speed_range").value * 1000,
       300
     )
   )
@@ -61,23 +61,21 @@ class Game {
         resolve => this.nextQuiz()
       ).catch(()=>{});
     });
-    
     $("#start_button").addEventListener("click", () => {
       this.htmlManager.popdownStart().then(
         resolve => this.nextQuiz()
       ).catch(()=>{});
-    })
-    
+    });
     $("#init_button_timeout").addEventListener("click", () => {
       this.htmlManager.popdownTimeOut().then(
         resolve => initGame()
       ).catch(()=>{});
-    })
+    });
     $("#init_button_gameend").addEventListener("click", () => {
       this.htmlManager.popdownGameEnd().then(
         resolve => initGame()
       ).catch(()=>{});
-    })
+    });
 
     this.htmlManager.initWindows();
 
@@ -96,7 +94,7 @@ class Game {
     while (list.length > 0) {
       new_list.push(
         list.splice(this.randomIndex(list), 1)[0]
-      )
+      );
     }
     return new_list;
   }
