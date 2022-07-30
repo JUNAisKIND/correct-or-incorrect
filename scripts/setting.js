@@ -10,11 +10,9 @@ quiz_range.addEventListener("change", () => {
 })
 
 const setting_box = $("#setting_box");
-const setting = $("#setting");
 
-setting.addEventListener("click", ()=> {
+$("#setting_button").addEventListener("click", ()=> {
   current_game.htmlManager.popupMessage(setting_box, 300).catch(()=>{});
-  setting.style.display = "none";
 })
 
 $("#init_button_options").addEventListener("click", () => {
@@ -27,5 +25,4 @@ $("#init_button_options").addEventListener("click", () => {
 $("#init_button_developer").addEventListener("click", () => {
   current_game.htmlManager.popupMessage(setting_box, 300, "reverse").catch(()=>{});
   initGame();
-  setting.style.display = "flex";
 });
