@@ -18,12 +18,14 @@
   <script src="quiz.js" defer></script> -->
 </head>
 <body>
-  <div class="setting" id="setting"></div>
+  <div class="setting" id="setting">
+    <div></div>
+    <div></div>
+  </div>
   <div class="setting-box" id="setting_box">
     
     <div class="setting-window" id="setting_window">
-      <div class="close" id="close"></div>
-      개발자모드
+      게임 설정
       <div class="setting-options">
         <section class="range-box" id="speed_range_box">
           <span>문제 당 시간 설정</span>
@@ -44,6 +46,7 @@
       </div>
 
       <div class="buttons">
+        <button class="next_button" id="init_button_options">초기화</button>
         <button class="next_button" id="init_button_developer">저장하고 재시작</button>
       </div>
       

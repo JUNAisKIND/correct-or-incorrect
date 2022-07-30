@@ -232,41 +232,38 @@ main .popup .text {
   left: 0;
 
   background-color: rgba(0, 0, 0, 0.596);
-  /* display: none; */
-}
-
-.close {
-  position: absolute;
-  background-color: rgb(242, 77, 77);
-  width: 6vmin;
-  height: 6vmin;
-  top: 0;
-  right: 0;
-  transform: translate(30%, -30%);
-
-  border: solid 2px rgb(131, 47, 47);
-  border-radius: 5px;
-
-
+  display: none;
 }
 
 .setting {
   position: fixed;
   cursor: pointer;
-  width: 8vmin;
-  height: 8vmin;
+  width: 6vmin;
+  height: 6vmin;
   top: 0;
-  left: 0;
+  right: 0;
 
   z-index: 2;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  border: 3px solid rgb(0, 91, 17);
+  background-color: rgb(255, 255, 255);
+}
+
+.setting div {
+  background-color: rgb(0, 91, 17);
+  width: 15%;
+  height: 80%;
 }
 
 .setting-window {
   width: 60vmin;
-  height: 70vmin;
+  height: 90vmin;
 
-  background-color: white;
-  border: solid 5px gray;
+  background-color: rgb(255, 255, 255);
+  border: solid 5px rgb(126, 126, 126);
   border-radius: 10px;
 
   padding: 1rem;

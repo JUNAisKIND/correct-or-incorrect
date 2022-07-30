@@ -28,7 +28,7 @@ class HTMLManager {
   
   }
 
-  initWindows() {
+  initWindows(max_quiz_count) {
 
     this.startWindow.style.display = "block";
 
@@ -38,7 +38,7 @@ class HTMLManager {
 
     this.stopGaging();
 
-    this.popupStart();
+    this.popupStart(max_quiz_count);
 
   }
 
@@ -123,8 +123,8 @@ class HTMLManager {
     return this.popupMessage(message_box, duration, "reverse");
   }
 
-  popupStart() {
-    return this.appearMessage(this.startWindow, 0);
+  popupStart(max_quiz_count) {
+    return this.appearMessage(this.startWindow, 0, '게임 시작<br/><br/>',`&lt 현재 설정 &gt<br/>각 문제 당 ${this.gage_duration/1000}초<br/>전체 ${max_quiz_count}문제`);
   }
 
   popupResult(...messages) {

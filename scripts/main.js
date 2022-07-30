@@ -24,15 +24,16 @@ function initGame() {
   const new_list = row.concat(column)
 
   current_game = new Game(
-    $("#quiz_box_section"),
+    $("#quiz_box_section"), //문제들 들어있는 element
     new_list,
+    $("#quiz_range").value, //문제 갯수(normal: 30)
     new HTMLManager(
       $("#gage"),
       $("#popup_start"),
       $("#popup"),
       $("#popup_finish"),
       $("#popup_result"),
-      $("#speed_range").value * 1000,
+      $("#speed_range").value * 1000, //문제 당 시간(normal: 10000;10초)
       300
     )
   )
@@ -40,14 +41,15 @@ function initGame() {
 
 class Game {
 
-  constructor(quizBox, quiz_list, htmlManager) {
+  constructor(quizBox, quiz_list, max_quiz_count, htmlManager) {
     this.score = 0;
 
     this.quizBox = quizBox;
     this.quiz_count = 0;
     this.quiz_list = quiz_list;
     this.current_quiz;
-    this.max_quiz_count = quiz_list.length;
+
+    this.max_quiz_count = max_quiz_count;
     
     this.htmlManager = htmlManager;
 
@@ -77,7 +79,7 @@ class Game {
       ).catch(()=>{});
     });
 
-    this.htmlManager.initWindows();
+    this.htmlManager.initWindows(this.max_quiz_count);
 
     this.quizBox.innerHTML = "";
 
@@ -100,7 +102,8 @@ class Game {
   }
 
   next() { //this.quiz_list 중 무작위 반환하고 삭제
-    if(this.quiz_list.length <= 0) return null;
+    if(this.quiz_list.length <= 0 || this.quiz_count >= this.max_quiz_count) return null;
+    // quiz가 모두 사용됬거나 최대 문제 갯수를 넘었을때 return null
 
     const idx = this.randomIndex(this.quiz_list);
     
